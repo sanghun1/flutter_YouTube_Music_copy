@@ -1,8 +1,6 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:marquee/marquee.dart';
+import 'name.dart';
 
 void main() {
   runApp(MyApp());
@@ -79,12 +77,12 @@ class _HomeState extends State<Home> {
                       size.height * 1 / 10),
                   child: Column(
                     children: [
-                      Image.asset("assets/album.jpg"), // assets/
+                      Image.asset("album.jpg"), // assets/
                       Padding(
                         padding: EdgeInsets.fromLTRB(
-                            size.width * 1 / 40,
+                            size.width * 1 / 30,
                             size.height * 1 / 30,
-                            size.width * 1 / 40,
+                            size.width * 1 / 30,
                             size.height * 1 / 150),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,20 +90,17 @@ class _HomeState extends State<Home> {
                             Icon(
                               Icons.thumb_down_alt_outlined,
                               color: Colors.white,
-                              size: 30,
+                              size: 35,
                             ),
-                            Text(
-                              "Brand(feat. Layone)",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
+                            Container(
+                              width: 240,
+                              child: _RootWidget(),
                             ),
                             // buildAnimatedText("테스트"),
                             Icon(
                               Icons.thumb_up_alt_outlined,
                               color: Colors.white,
-                              size: 30,
+                              size: 35,
                             ),
                           ],
                         ),
@@ -261,6 +256,22 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _RootWidget extends StatelessWidget {
+  var _textStyle = TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold);
+
+  @override
+  Widget build(BuildContext context) {
+    return Name(
+      items: [
+        Text("Brand(feat. Layone)   ", style: _textStyle),
+      ],
+      animationDuration: Duration(seconds: 3),
+      backDuration: Duration(seconds: 3),
+      pauseDuration: Duration(seconds: 4),
     );
   }
 }
