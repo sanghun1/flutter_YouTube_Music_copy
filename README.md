@@ -3,10 +3,17 @@
 -------------------------
 
 ### 라이브러리
-- toggle_switch
+- [toggle_switch](https://pub.dev/packages/toggle_switch)
+- [marquee](https://pub.dev/packages/marquee)
+- [sliding_up_panel](https://pub.dev/packages/sliding_up_panel)
 
-### 원본
-<img width="377" alt="image" src="https://user-images.githubusercontent.com/39526249/171834486-edb642af-2ce6-4598-bb46-c88616242130.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="377" alt="image" src="https://user-images.githubusercontent.com/39526249/171835306-d161321d-8cfc-4f84-b404-009ec80c27d7.png">
+### 라이브러리 참고 영상
+- [marquee](https://www.youtube.com/watch?v=QayTs_H9QOM)
+- [sliding_up_panel](https://www.youtube.com/watch?v=s9XHOQeIeZg)
+-------------------------
+
+<img src="https://user-images.githubusercontent.com/39526249/172046335-e9f5c926-32f9-4c60-902b-3139ef4682d1.gif"  width="266"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/39526249/172046452-effe68f5-a036-4f11-bc84-4065eb8b0ccb.gif"  width="266"/>
+
 
 
 
