@@ -19,9 +19,9 @@ class _SubState extends State<Sub> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff233316),
+        backgroundColor: Color(0xff382D0D),
         body: SlidingUpPanel(
-          color: Color(0xff334D20),
+          color: Color(0xff594915),
           minHeight: panelHeightClosed,
           maxHeight: panelHeightOpen,
           parallaxEnabled: true,
@@ -48,8 +48,9 @@ class _SubState extends State<Sub> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Brand(feat. Layone)", style: TextStyle(fontSize: 18, color: Colors.white),),
-                        Text("BE'O", style: TextStyle(fontSize: 18, color: Color(0xffB2B9AE)),),
+                        Text("Hate you", style: TextStyle(fontSize: 18,
+                            color: Colors.white),),
+                        Text("백예린", style: TextStyle(fontSize: 18, color: Color(0xffB2B9AE)),),
                       ],
                     ),
                   ),

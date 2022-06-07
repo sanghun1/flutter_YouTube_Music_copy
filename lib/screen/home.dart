@@ -3,6 +3,8 @@ import 'package:marquee/marquee.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:musicapp/util/panel.dart';
+import 'package:musicapp/util/page_manager.dart';
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -26,10 +28,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late final PageManager _pageManager;
+
   double _value = 0.0;
   int min = 0;
   int second = 0;
   String cnt = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _pageManager = PageManager();
+  }
+
+  @override
+  void dispose() {
+    _pageManager.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +65,9 @@ class _HomeState extends State<Home> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff233316),
+        backgroundColor: Color(0xff382D0D),
         body: SlidingUpPanel(
-          color: Color(0xff334D20),
+          color: Color(0xff594915),
           minHeight: panelHeightClosed,
           maxHeight: panelHeightOpen,
           onPanelOpened: open,
@@ -61,7 +77,7 @@ class _HomeState extends State<Home> {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 20, 15.0, 20),
+                padding: const EdgeInsets.fromLTRB(30.0, 20, 15.0, 20),
                 child: Column(
                   children: [
                     Row(
@@ -77,11 +93,11 @@ class _HomeState extends State<Home> {
                           minHeight: 45,
                           cornerRadius: 25.0,
                           activeBgColors: [
-                            [Color(0xff334D20)],
-                            [Color(0xff334D20)]
+                            [Color(0xff594915)],
+                            [Color(0xff594915)]
                           ],
                           activeFgColor: Colors.white,
-                          inactiveBgColor: Color(0xff0A0D06),
+                          inactiveBgColor: Color(0xff0D0A03),
                           inactiveFgColor: Colors.white,
                           initialLabelIndex: 0,
                           totalSwitches: 2,
@@ -126,25 +142,34 @@ class _HomeState extends State<Home> {
                                   height: 40,
                                   width: 240,
                                   child: Expanded(
-                                    child: Marquee(
-                                      text: 'Brand(feat. Layone)',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.bold),
-                                      scrollAxis: Axis.horizontal,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      blankSpace: 70.0,
-                                      velocity: 40.0,
-                                      pauseAfterRound: Duration(seconds: 1),
-                                      startPadding: 0.0,
-                                      accelerationDuration:
-                                          Duration(seconds: 1),
-                                      accelerationCurve: Curves.linear,
-                                      decelerationDuration:
-                                          Duration(milliseconds: 500),
+                                    child: Center(
+                                      child: Text(
+                                        "Hate you",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
+                                    // Marquee(
+                                    //   text: 'Hate you',
+                                    //   style: TextStyle(
+                                    //       color: Colors.white,
+                                    //       fontSize: 28,
+                                    //       fontWeight: FontWeight.bold),
+                                    //   scrollAxis: Axis.horizontal,
+                                    //   crossAxisAlignment:
+                                    //       CrossAxisAlignment.start,
+                                    //   blankSpace: 100.0,
+                                    //   velocity: 40.0,
+                                    //   pauseAfterRound: Duration(seconds: 1),
+                                    //   startPadding: 0.0,
+                                    //   accelerationDuration:
+                                    //       Duration(seconds: 1),
+                                    //   accelerationCurve: Curves.linear,
+                                    //   decelerationDuration:
+                                    //       Duration(milliseconds: 500),
+                                    // ),
                                   ),
                                 ),
                                 Icon(
@@ -156,52 +181,63 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Text(
-                            "BE'O",
+                            "백예린",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Color(0xffB2B9AE),
                             ),
                           ),
-                          Column(
-                            children: [
-                              Slider(
-                                min: 0.0,
-                                max: 159.0,
-                                value: _value,
-                                activeColor: Colors.white,
-                                inactiveColor: Color(0xff737E6E),
-                                onChanged: (value) {
-                                  setState(() {
-                                    // print(_value);
-                                    // print("min : ${min}");
-                                    // print("second : ${second}");
-                                    _value = value;
-                                  });
-                                },
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "${min}:${cnt}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 15,
-                                      color: Color(0xff737E6E),
-                                    ),
-                                  ),
-                                  Text(
-                                    "2:39",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 15,
-                                      color: Color(0xff737E6E),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                0, size.height * 1 / 50, 0, 0),
+                            child: Column(
+                              children: [
+                                ValueListenableBuilder<ProgressBarState>(
+                                  valueListenable:
+                                      _pageManager.progressNotifier,
+                                  builder: (_, value, __) {
+                                    return ProgressBar(
+                                      progressBarColor: Colors.white,
+                                      baseBarColor: Color(0xff5F583C),
+                                      bufferedBarColor: Color(0xff807A64),
+                                      thumbColor: Colors.white,
+                                      timeLabelPadding: 5.0,
+                                      timeLabelTextStyle: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                        color: Color(0xffBCB8AC),
+                                      ),
+                                      progress: value.current,
+                                      buffered: value.buffered,
+                                      total: value.total,
+                                      onSeek: _pageManager.seek,
+                                    );
+                                  },
+                                ),
+                                // Row(
+                                //   mainAxisAlignment:
+                                //       MainAxisAlignment.spaceBetween,
+                                //   children: [
+                                //     Text(
+                                //       "${min}:${cnt}",
+                                //       style: TextStyle(
+                                //         fontWeight: FontWeight.w400,
+                                //         fontSize: 15,
+                                //         color: Color(0xff737E6E),
+                                //       ),
+                                //     ),
+                                //     Text(
+                                //       "2:39",
+                                //       style: TextStyle(
+                                //         fontWeight: FontWeight.w400,
+                                //         fontSize: 15,
+                                //         color: Color(0xff737E6E),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // )
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(
@@ -225,13 +261,40 @@ class _HomeState extends State<Home> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    color: Color(0xff334D20),
-                                    child: Icon(
-                                      Icons.play_arrow,
-                                      color: Colors.white,
-                                      size: 55,
+                                    width: 80,
+                                    height: 80,
+                                    color: Color(0xff594915),
+                                    child: ValueListenableBuilder<ButtonState>(
+                                      valueListenable:
+                                          _pageManager.buttonNotifier,
+                                      builder: (_, value, __) {
+                                        switch (value) {
+                                          case ButtonState.loading:
+                                            return Container(
+                                              margin: const EdgeInsets.all(8.0),
+                                              width: 32.0,
+                                              height: 32.0,
+                                              color: Colors.white,
+                                              child:
+                                                  const CircularProgressIndicator(),
+                                            );
+                                          case ButtonState.paused:
+                                            return IconButton(
+                                              icon:
+                                                  const Icon(Icons.play_arrow),
+                                              iconSize: 45.0,
+                                              color: Colors.white,
+                                              onPressed: _pageManager.play,
+                                            );
+                                          case ButtonState.playing:
+                                            return IconButton(
+                                              icon: const Icon(Icons.pause),
+                                              iconSize: 45.0,
+                                              color: Colors.white,
+                                              onPressed: _pageManager.pause,
+                                            );
+                                        }
+                                      },
                                     ),
                                   ),
                                 ),
@@ -263,7 +326,7 @@ class _HomeState extends State<Home> {
                 child: Container(
                   height: 30,
                   width: double.infinity,
-                  color: Color(0xff334D20),
+                  color: Color(0xff594915),
                   padding: EdgeInsets.fromLTRB(
                       size.width * 18 / 40, 12, size.width * 18 / 40, 12),
                   child: ClipRRect(
@@ -289,5 +352,4 @@ class _HomeState extends State<Home> {
   void open() {
     Navigator.pushNamed(context, "/sub");
   }
-
 }

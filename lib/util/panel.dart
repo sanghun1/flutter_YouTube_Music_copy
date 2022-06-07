@@ -15,7 +15,13 @@ class PanelWidget extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 18),
           buildAboutText(),
-          SizedBox(height: 36),
+          SizedBox(height: 400),
+          Center(
+            child: CircularProgressIndicator(
+              // backgroundColor: Colors.white,
+              color: Colors.white,
+            ),
+          ),
         ],
       );
 
