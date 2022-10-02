@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
+import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:musicapp/util/panel.dart';
@@ -49,10 +50,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
-    final panelHeightClosed = size.height * 0.1;
-    final panelHeightOpen = size.height * 0.9;
+    final panelHeightClosed = Get.height * 0.1;
+    final panelHeightOpen = Get.height * 0.9;
 
     min = (_value / 60).floor();
     second = (_value % 60).floor();
@@ -72,12 +72,12 @@ class _HomeState extends State<Home> {
           maxHeight: panelHeightOpen,
           onPanelOpened: open,
           parallaxEnabled: true,
-          parallaxOffset: 0.2,
+          parallaxOffset: 0.1,
           // onPanelClosed: close,
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(30.0, 20, 15.0, 20),
+                padding: const EdgeInsets.fromLTRB(25.0, 20, 15.0, 20),
                 child: Column(
                   children: [
                     Row(
@@ -113,23 +113,13 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          size.width * 1 / 12,
-                          size.height * 1 / 10,
-                          size.width * 1 / 10,
-                          size.height * 1 / 10),
+                      padding: EdgeInsets.fromLTRB(Get.width * 1 / 12, Get.height * 1 / 10, Get.width * 1 / 10, Get.height * 1 / 10),
                       child: Column(
                         children: [
-                          Hero(
-                              tag: "album",
-                              child: Image.asset("assets/album.jpg")),
+                          Hero(tag: "album", child: Image.asset("assets/album.jpg")),
                           // assets/
                           Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                size.width * 1 / 30,
-                                size.height * 1 / 30,
-                                size.width * 1 / 30,
-                                size.height * 1 / 150),
+                            padding: EdgeInsets.fromLTRB(Get.width * 1 / 30, Get.height * 1 / 30, Get.width * 1 / 30, Get.height * 1 / 150),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -145,10 +135,7 @@ class _HomeState extends State<Home> {
                                     child: Center(
                                       child: Text(
                                         "Hate you",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold),
+                                        style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     // Marquee(
@@ -188,13 +175,11 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                0, size.height * 1 / 50, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, Get.height * 1 / 50, 0, 0),
                             child: Column(
                               children: [
                                 ValueListenableBuilder<ProgressBarState>(
-                                  valueListenable:
-                                      _pageManager.progressNotifier,
+                                  valueListenable: _pageManager.progressNotifier,
                                   builder: (_, value, __) {
                                     return ProgressBar(
                                       progressBarColor: Colors.white,
@@ -240,11 +225,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                size.width * 0,
-                                size.height * 1 / 100,
-                                size.width * 0,
-                                size.height * 1 / 100),
+                            padding: EdgeInsets.fromLTRB(Get.width * 0, Get.height * 1 / 100, Get.width * 0, Get.height * 1 / 100),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -265,8 +246,7 @@ class _HomeState extends State<Home> {
                                     height: 80,
                                     color: Color(0xff594915),
                                     child: ValueListenableBuilder<ButtonState>(
-                                      valueListenable:
-                                          _pageManager.buttonNotifier,
+                                      valueListenable: _pageManager.buttonNotifier,
                                       builder: (_, value, __) {
                                         switch (value) {
                                           case ButtonState.loading:
@@ -275,13 +255,11 @@ class _HomeState extends State<Home> {
                                               width: 32.0,
                                               height: 32.0,
                                               color: Colors.white,
-                                              child:
-                                                  const CircularProgressIndicator(),
+                                              child: const CircularProgressIndicator(),
                                             );
                                           case ButtonState.paused:
                                             return IconButton(
-                                              icon:
-                                                  const Icon(Icons.play_arrow),
+                                              icon: const Icon(Icons.play_arrow),
                                               iconSize: 45.0,
                                               color: Colors.white,
                                               onPressed: _pageManager.play,
@@ -327,8 +305,7 @@ class _HomeState extends State<Home> {
                   height: 30,
                   width: double.infinity,
                   color: Color(0xff594915),
-                  padding: EdgeInsets.fromLTRB(
-                      size.width * 18 / 40, 12, size.width * 18 / 40, 12),
+                  padding: EdgeInsets.fromLTRB(Get.width * 18 / 40, 12, Get.width * 18 / 40, 12),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(3),
                     child: Container(
@@ -342,14 +319,22 @@ class _HomeState extends State<Home> {
           panelBuilder: (controller) => PanelWidget(
             controller: controller,
           ),
-          borderRadius: BorderRadius.vertical(
-              top: Radius.circular(panelHeightClosed * 0.1)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(panelHeightClosed * 0.1)),
         ),
       ),
     );
   }
 
+  Widget iconWidget(IconData iconName, double size, Color iconColor){
+    return Icon(
+      iconName,
+      color: iconColor,
+      size: size,
+    );
+  }
+
   void open() {
-    Navigator.pushNamed(context, "/sub");
+    // Navigator.pushNamed(context, "/sub");
+    Get.toNamed("/sub");
   }
 }

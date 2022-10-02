@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:musicapp/util/panel.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -85,6 +86,8 @@ class _SubState extends State<Sub> {
   }
 
   void close() {
-    Navigator.pushNamed(context, "/home");
+    // Navigator.pushNamed(context, "/home");
+    Get.toNamed("/home");
+
   }
 }
